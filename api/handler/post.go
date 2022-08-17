@@ -19,7 +19,7 @@ func HandleUrl(w http.ResponseWriter, r *http.Request) {
 
 	json.Unmarshal(b, &data)
 
+	w.WriteHeader(http.StatusCreated)
 	w.Header().Add("Content-Type", "application/json")
 	w.Write([]byte(fmt.Sprintf(`{"short_url": "http://0.0.0.0:8080/%s", "original_url": "%s"}`, shortid.MustGenerate(), data["url"])))
-	w.WriteHeader(201)
 }

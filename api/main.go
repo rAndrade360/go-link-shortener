@@ -34,11 +34,16 @@ func main() {
 	pb.RegisterShortUrlServer(s, &handler.Server{})
 	go func() {
 		reflection.Register(s)
+		log.Println("GRPC server started at port :8081")
 		err = s.Serve(listener)
 		if err != nil {
-			log.Println("Erro to create grpc server ", err.Error())
+			log.Fatal("Erro to create grpc server ", err.Error())
 		}
 	}()
 
-	log.Fatal(srv.ListenAndServe())
+	log.Println("HTTP server started at port :8080")
+	err = srv.ListenAndServe()
+	if err != nil {
+		log.Fatal("Erro to create grpc server ", err.Error())
+	}
 }
