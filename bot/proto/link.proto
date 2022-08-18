@@ -1,0 +1,16 @@
+syntax = 'proto3';
+
+option go_package = "handler/pb";
+
+message ShortRequest {
+    string url = 1;
+}
+
+message ShortResponse {
+    string short_url = 1;
+    string original_url = 2;
+}
+
+service ShortUrl {
+    rpc Short (ShortRequest) returns (ShortResponse){}
+}
