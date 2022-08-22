@@ -16,7 +16,7 @@ func main() {
 		log.Fatal("Err to get Telegram Token ", err.Error())
 	}
 
-	api := adapter.NewAdapterApi("localhost:8081")
+	api := adapter.NewAdapterApi(os.Getenv("HOST_API"))
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TELEGRAM_TOKEN"))
 	if err != nil {
 		log.Fatal("Err to get Telegram Token ", err.Error())
@@ -60,11 +60,4 @@ func main() {
 		}
 
 	}
-
-	url_short, err := api.ShortUrl("http://github.com/rAndrade360/GRPC")
-	if err != nil {
-		log.Fatal("Error to Call gRPC", err.Error())
-	}
-
-	log.Println("Returned: ", url_short)
 }
